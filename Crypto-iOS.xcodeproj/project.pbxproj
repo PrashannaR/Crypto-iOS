@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D2991BE29FAF672009F9A9D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2991BD29FAF672009F9A9D /* HomeView.swift */; };
+		5D2991C229FAF789009F9A9D /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2991C129FAF789009F9A9D /* CircleButtonView.swift */; };
 		5D6605E329F9B43A006FE5AD /* Crypto_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6605E229F9B43A006FE5AD /* Crypto_iOSApp.swift */; };
 		5D6605E529F9B43A006FE5AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6605E429F9B43A006FE5AD /* ContentView.swift */; };
 		5D6605E729F9B43B006FE5AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D6605E629F9B43B006FE5AD /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D2991BD29FAF672009F9A9D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5D2991C129FAF789009F9A9D /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		5D6605DF29F9B43A006FE5AD /* Crypto-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D6605E229F9B43A006FE5AD /* Crypto_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto_iOSApp.swift; sourceTree = "<group>"; };
 		5D6605E429F9B43A006FE5AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,9 +38,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D2991B829FAF629009F9A9D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5D2991BF29FAF76A009F9A9D /* Components */,
+				5D2991BA29FAF650009F9A9D /* Home */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5D2991BA29FAF650009F9A9D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5D2991BC29FAF65D009F9A9D /* ViewModel */,
+				5D2991BB29FAF655009F9A9D /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5D2991BB29FAF655009F9A9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D2991BD29FAF672009F9A9D /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D2991BC29FAF65D009F9A9D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D2991BF29FAF76A009F9A9D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5D2991C029FAF778009F9A9D /* CircleButton */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5D2991C029FAF778009F9A9D /* CircleButton */ = {
+			isa = PBXGroup;
+			children = (
+				5D2991C129FAF789009F9A9D /* CircleButtonView.swift */,
+			);
+			path = CircleButton;
+			sourceTree = "<group>";
+		};
 		5D6605D629F9B43A006FE5AD = {
 			isa = PBXGroup;
 			children = (
+				5D2991B829FAF629009F9A9D /* Core */,
 				5D6605E129F9B43A006FE5AD /* Crypto-iOS */,
 				5D6605E029F9B43A006FE5AD /* Products */,
 			);
@@ -149,7 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D6605E529F9B43A006FE5AD /* ContentView.swift in Sources */,
+				5D2991BE29FAF672009F9A9D /* HomeView.swift in Sources */,
 				5D6605E329F9B43A006FE5AD /* Crypto_iOSApp.swift in Sources */,
+				5D2991C229FAF789009F9A9D /* CircleButtonView.swift in Sources */,
 				5D6605F229F9B6A0006FE5AD /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
