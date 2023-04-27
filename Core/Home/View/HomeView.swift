@@ -8,43 +8,47 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    @State private var showPortfolio : Bool = false
-    
-    
+    @State private var showPortfolio: Bool = false
     var body: some View {
-        ZStack{
-            //background
+        ZStack {
+            // background
             Color.theme.background
                 .ignoresSafeArea()
-            
-            //content
-            VStack{
-                HStack{
-                    CircleButtonView(iconName: showPortfolio ? "plus" : "info")
-                        .animation(nil, value: UUID())
-                    Spacer()
-                    Text(showPortfolio ? "Portfolio" : "Live Prices")
-                        .animation(nil, value: UUID())
-                        .font(.headline)
-                        .fontWeight(.heavy)
-                        .foregroundColor(Color.theme.accent)
-                    Spacer()
-                    CircleButtonView(iconName: "chevron.right")
-                        .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
-                        .onTapGesture {
-                            withAnimation(.spring()){
-                                showPortfolio.toggle()
-                            }
-                        }
-                    
-                }
-                .padding(.horizontal)
-                .padding(.horizontal)
-                
+
+            // content
+            VStack {
+                HomeHeader
+
                 Spacer(minLength: 0)
             }
         }
+    }
+}
+
+// MARK: Extension
+
+extension HomeView {
+    private var HomeHeader: some View {
+        HStack {
+            CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+                .animation(nil, value: UUID())
+            Spacer()
+            Text(showPortfolio ? "Portfolio" : "Live Prices")
+                .animation(nil, value: UUID())
+                .font(.headline)
+                .fontWeight(.heavy)
+                .foregroundColor(Color.theme.accent)
+            Spacer()
+            CircleButtonView(iconName: "chevron.right")
+                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        showPortfolio.toggle()
+                    }
+                }
+        }
+        .padding(.horizontal)
+        .padding(.horizontal)
     }
 }
 
