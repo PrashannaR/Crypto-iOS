@@ -13,6 +13,7 @@ class DeveloperPreview{
     
     private init(){}
     
+    //MARK: Sample Coin
     let coin = CoinModel(
        id: "bitcoin",
        symbol: "btc",
@@ -212,6 +213,10 @@ class DeveloperPreview{
        ]),
        priceChangePercentage24HInCurrency: 3952.64,
        currentHoldings: 1.5)
+    
+    //MARK: Sample HomeViewModel
+    
+    let homeVM = HomeViewModel()
     
 }
 
