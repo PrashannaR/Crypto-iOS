@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: look into the currency symbol, shows NPR when compiled on a phone
 
 extension Double{
     

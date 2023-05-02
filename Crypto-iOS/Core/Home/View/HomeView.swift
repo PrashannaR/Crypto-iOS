@@ -20,7 +20,7 @@ struct HomeView: View {
             // content
             VStack {
                 HomeHeader
-                
+                SearchBarView(searchtText: $vm.searchBarText)
                 columnTitle
                     .font(.caption)
                     .foregroundColor(Color.theme.secondaryText)
