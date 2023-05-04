@@ -17,6 +17,14 @@ class HomeViewModel: ObservableObject {
     private let dataService = CoinDataService()
 
     private var cancellables = Set<AnyCancellable>()
+    
+    
+    @Published var statistics: [StatisticModel] = [
+        StatisticModel(title: "Title", value: "Value", percentageChange: 1),
+        StatisticModel(title: "Title", value: "Value"),
+        StatisticModel(title: "Title", value: "Value"),
+        StatisticModel(title: "Title", value: "Value", percentageChange: -1),
+    ]
 
     init() {
         addSubscriber()

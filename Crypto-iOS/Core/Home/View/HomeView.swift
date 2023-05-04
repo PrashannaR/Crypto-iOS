@@ -20,6 +20,9 @@ struct HomeView: View {
             // content
             VStack {
                 HomeHeader
+                
+                HomeStatsView(showPortfolio: $showPortfolio)
+                
                 SearchBarView(searchtText: $vm.searchBarText)
                 columnTitle
                     .font(.caption)
