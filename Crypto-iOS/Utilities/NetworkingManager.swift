@@ -38,6 +38,7 @@ class NetworkingManager {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300 else {
             throw NetworkingError.badURLResponse
+            
         }
 
         return output.data
