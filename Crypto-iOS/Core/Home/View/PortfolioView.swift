@@ -37,6 +37,11 @@ struct PortfolioView: View {
                     navBarButtons
                 }
             }
+            .onChange(of: vm.searchBarText) { newValue in
+                if newValue == "" {
+                    removeSelectedCoin()
+                }
+            }
         }
     }
 }
@@ -48,6 +53,7 @@ struct PortfolioView_Previews: PreviewProvider {
     }
 }
 
+//MARK: Extension
 extension PortfolioView {
     private var CoinLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -108,6 +114,7 @@ extension PortfolioView {
             Image(systemName: "checkmark")
                 .opacity(showCheckMark ? 1.0 : 0.0)
             Button {
+                saveButtonPressed()
             } label: {
                 Text("Save".uppercased())
             }

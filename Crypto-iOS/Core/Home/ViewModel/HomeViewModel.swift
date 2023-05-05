@@ -18,6 +18,8 @@ class HomeViewModel: ObservableObject {
 
     private let marketDataService = MarketDataService()
     private var cancellables = Set<AnyCancellable>()
+    
+    private let portfolioDataService = PortfolioDataService()
 
     @Published var statistics: [StatisticModel] = []
 
@@ -44,6 +46,9 @@ class HomeViewModel: ObservableObject {
                 self?.statistics = recivedState
             }
             .store(in: &cancellables)
+        
+        //updates portfolio coins
+        
     }
     
     private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel]{
