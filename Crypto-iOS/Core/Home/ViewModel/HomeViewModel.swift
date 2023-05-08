@@ -22,6 +22,8 @@ class HomeViewModel: ObservableObject {
     private let portfolioDataService = PortfolioDataService()
 
     @Published var statistics: [StatisticModel] = []
+    
+    @Published var isLoading : Bool = false
 
     init() {
         addSubscriber()
@@ -43,15 +45,7 @@ class HomeViewModel: ObservableObject {
         // updates portfolio coins
         $allCoins
             .combineLatest(portfolioDataService.$savedEntities)
-            .map { coinModels, portfolioEntities -> [CoinModel] in
-
-                coinModels.compactMap { coin -> CoinModel? in
-                    guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else {
-                        return nil
-                    }
-                    return coin.updateHoldings(amount: entity.amount)
-                }
-            }
+            .map(mapAllCoinsToPortfolioCoins)
             .sink { [weak self] returnedCoins in
                 self?.portfolioCoins = returnedCoins
             }
@@ -63,12 +57,18 @@ class HomeViewModel: ObservableObject {
             .map(mapGlobalMarketData)
             .sink { [weak self] recivedState in
                 self?.statistics = recivedState
+                self?.isLoading = false
             }
             .store(in: &cancellables)
     }
+    
+    func reloadData(){
+        isLoading = true
+        coinDataService.getCoins()
+        marketDataService.getData()
+    }
 
     // MARK: Update CoreData
-
     func updatePortfolio(coin: CoinModel, amount: Double) {
         portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
@@ -109,6 +109,16 @@ class HomeViewModel: ObservableObject {
 
         return stats
     }
+}
+
+private func mapAllCoinsToPortfolioCoins(allCoins : [CoinModel], portfolioEntities : [PortfolioEntity]) -> [CoinModel]{
+    
+    allCoins.compactMap { coin -> CoinModel? in
+           guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else {
+               return nil
+           }
+           return coin.updateHoldings(amount: entity.amount)
+       }
 }
 
 // MARK: Filter coins
