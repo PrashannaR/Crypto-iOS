@@ -30,7 +30,7 @@ class PortfolioDataService {
     func updatePortfolio(coin: CoinModel, amount: Double){
         
         //checks if item is already present
-        if let entity = savedEntities.first(where: { savedEntity in
+        if let entity = savedEntities.first(where: { savedEntity -> Bool in
             return savedEntity.coinID == coin.id
         }){
             if amount > 0{
