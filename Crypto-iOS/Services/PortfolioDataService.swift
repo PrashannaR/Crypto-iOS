@@ -12,79 +12,76 @@ class PortfolioDataService {
     private let container: NSPersistentContainer
     private let containerName: String = "PortfolioContainer"
     private let entityName: String = "PortfolioEntity"
-    
-    @Published var savedEntities : [PortfolioEntity] = []
-    
+
+    @Published var savedEntities: [PortfolioEntity] = []
+
     init() {
         container = NSPersistentContainer(name: containerName)
-        container.loadPersistentStores {[weak self] _, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 print("Error loading CoreData : \(error)")
             }
-            self?.getPortfolio()
+            self.getPortfolio()
         }
     }
-    
-    //MARK: Public
-    
-    func updatePortfolio(coin: CoinModel, amount: Double){
-        
-        //checks if item is already present
+
+    // MARK: Public
+
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        // checks if item is already present
         if let entity = savedEntities.first(where: { savedEntity -> Bool in
-            return savedEntity.coinID == coin.id
-        }){
-            if amount > 0{
+            savedEntity.coinID == coin.id
+        }) {
+            if amount > 0 {
                 update(entity: entity, amount: amount)
-            }else{
+            } else {
                 remove(entity: entity)
             }
-        }else{
-            add(coin: coin, amount: amount )
+        } else {
+            add(coin: coin, amount: amount)
         }
     }
-    
-    //MARK: Private
-    private func getPortfolio(){
+
+    // MARK: Private
+
+    private func getPortfolio() {
         let req = NSFetchRequest<PortfolioEntity>(entityName: entityName)
-        
-        do{
+
+        do {
             savedEntities = try container.viewContext.fetch(req)
-        }catch let error{
+        } catch let error {
             print("Error fetching portfolio entities: \(error)")
         }
     }
-    
-    private func add(coin: CoinModel, amount: Double){
+
+    private func add(coin: CoinModel, amount: Double) {
         let entity = PortfolioEntity(context: container.viewContext)
         entity.coinID = coin.id
         entity.amount = amount
         applyChanges()
     }
-    
-    private func save(){
-        do{
+
+    private func save() {
+        do {
             try container.viewContext.save()
-            
-        }catch let error{
+
+        } catch let error {
             print("Error saving to core data: \(error)")
         }
     }
-    
-    private func applyChanges(){
+
+    private func applyChanges() {
         save()
         getPortfolio()
     }
-    
-    private func update(entity: PortfolioEntity, amount: Double){
+
+    private func update(entity: PortfolioEntity, amount: Double) {
         entity.amount = amount
         applyChanges()
     }
-    
-    private func remove(entity: PortfolioEntity){
+
+    private func remove(entity: PortfolioEntity) {
         container.viewContext.delete(entity)
         applyChanges()
     }
-    
-    
-    
 }
