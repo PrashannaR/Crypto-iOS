@@ -102,14 +102,24 @@ extension HomeView {
     
     private var columnTitle: some View{
         HStack{
-            Text("Coin")
+            HStack(spacing: 4){
+                Image(systemName: "chevron.down")
+                Text("Coin")
+            }
+            
             Spacer()
             
             if showPortfolio{
-                Text("Holdings")
+                HStack(spacing: 4){
+                    Image(systemName: "chevron.down")
+                    Text("Holdings")
+                }
+                
             }
-            
-            Text("Price")
+            HStack(spacing: 4){
+                Image(systemName: "chevron.down")
+                Text("Price")
+            }
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
             
             Button {
