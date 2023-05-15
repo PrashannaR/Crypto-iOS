@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var showPortfolio: Bool = false
     @EnvironmentObject private var vm: HomeViewModel
-    @State private var showPortfolioView : Bool = false
+    @State private var showPortfolioView: Bool = false
     var body: some View {
         ZStack {
             // background
@@ -24,9 +24,9 @@ struct HomeView: View {
             // content
             VStack {
                 HomeHeader
-                
+
                 HomeStatsView(showPortfolio: $showPortfolio)
-                
+
                 SearchBarView(searchtText: $vm.searchBarText)
                 columnTitle
                     .font(.caption)
@@ -36,7 +36,7 @@ struct HomeView: View {
                 if !showPortfolio {
                     allCoinsList
                         .transition(.move(edge: .leading))
-                }else{
+                } else {
                     portfolioCoinsList
                         .transition(.move(edge: .trailing))
                 }
@@ -77,8 +77,8 @@ extension HomeView {
         .padding(.horizontal)
         .padding(.horizontal)
     }
-    
-    private var allCoinsList : some View{
+
+    private var allCoinsList: some View {
         List {
             // TODO: change the coin later
             ForEach(vm.allCoins) { coin in
@@ -88,8 +88,8 @@ extension HomeView {
         }
         .listStyle(.plain)
     }
-    
-    private var portfolioCoinsList : some View{
+
+    private var portfolioCoinsList: some View {
         List {
             // TODO: change the coin later
             ForEach(vm.portfolioCoins) { coin in
@@ -99,38 +99,69 @@ extension HomeView {
         }
         .listStyle(.plain)
     }
-    
-    private var columnTitle: some View{
-        HStack{
-            HStack(spacing: 4){
-                Image(systemName: "chevron.down")
+
+    private var columnTitle: some View {
+        HStack {
+            HStack(spacing: 4) {
                 Text("Coin")
-            }
-            
-            Spacer()
-            
-            if showPortfolio{
-                HStack(spacing: 4){
-                    Image(systemName: "chevron.down")
-                    Text("Holdings")
-                }
-                
-            }
-            HStack(spacing: 4){
                 Image(systemName: "chevron.down")
-                Text("Price")
+                    .opacity((vm.sortOption == .rank || vm.sortOption == .rankReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
             }
-                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
-            
+            .onTapGesture {
+                withAnimation(.default) {
+                    if vm.sortOption == .rank {
+                        vm.sortOption = .rankReversed
+                    } else {
+                        vm.sortOption = .rank
+                    }
+                }
+            }
+
+            Spacer()
+
+            if showPortfolio {
+                HStack(spacing: 4) {
+                    Text("Holdings")
+                    Image(systemName: "chevron.down")
+                        .opacity((vm.sortOption == .holdings || vm.sortOption == .holdingsReversed) ? 1.0 : 0.0)
+                        .rotationEffect(Angle(degrees: vm.sortOption == .holdings ? 0 : 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default) {
+                        if vm.sortOption == .holdings {
+                            vm.sortOption = .holdingsReversed
+                        } else {
+                            vm.sortOption = .holdings
+                        }
+                    }
+                }
+            }
+            HStack(spacing: 4) {
+                Text("Price")
+                Image(systemName: "chevron.down")
+                    .opacity((vm.sortOption == .price || vm.sortOption == .priceReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .price ? 0 : 180))
+            }
+            .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            .onTapGesture {
+                withAnimation(.default) {
+                    if vm.sortOption == .price {
+                        vm.sortOption = .priceReversed
+                    } else {
+                        vm.sortOption = .price
+                    }
+                }
+            }
+
             Button {
-                withAnimation(.linear(duration: 2.0 )){
+                withAnimation(.linear(duration: 2.0)) {
                     vm.reloadData()
                 }
             } label: {
                 Image(systemName: "goforward")
             }
             .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
-
         }
     }
 }
@@ -143,5 +174,3 @@ struct HomeView_Previews: PreviewProvider {
         }.environmentObject(dev.homeVM)
     }
 }
-
-
