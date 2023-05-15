@@ -38,6 +38,7 @@
 		5DD50E112A043B4600D5B879 /* StatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD50E102A043B4600D5B879 /* StatisticsModel.swift */; };
 		5DD50E142A043C6100D5B879 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD50E132A043C6100D5B879 /* StatisticsView.swift */; };
 		5DD50E162A043F0A00D5B879 /* HomeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD50E152A043F0A00D5B879 /* HomeStatsView.swift */; };
+		5DD6D9952A12CBC000F444BD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD6D9942A12CBC000F444BD /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		5DD50E102A043B4600D5B879 /* StatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModel.swift; sourceTree = "<group>"; };
 		5DD50E132A043C6100D5B879 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		5DD50E152A043F0A00D5B879 /* HomeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatsView.swift; sourceTree = "<group>"; };
+		5DD6D9942A12CBC000F444BD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		5D2991B829FAF629009F9A9D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5DD6D9912A12CB9900F444BD /* Detail */,
 				5D2991BF29FAF76A009F9A9D /* Components */,
 				5D2991BA29FAF650009F9A9D /* Home */,
 			);
@@ -260,6 +263,30 @@
 			path = StatisticView;
 			sourceTree = "<group>";
 		};
+		5DD6D9912A12CB9900F444BD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5DD6D9922A12CBA200F444BD /* ViewModel */,
+				5DD6D9932A12CBA800F444BD /* View */,
+				5DD6D9942A12CBC000F444BD /* DetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		5DD6D9922A12CBA200F444BD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DD6D9932A12CBA800F444BD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,6 +370,7 @@
 				5DD50E112A043B4600D5B879 /* StatisticsModel.swift in Sources */,
 				5D4BAF1F29FFBE5E00B3D3FB /* CoinImageView.swift in Sources */,
 				5D840E312A053B8A00E6EE04 /* xmarkButton.swift in Sources */,
+				5DD6D9952A12CBC000F444BD /* DetailView.swift in Sources */,
 				5DD50E142A043C6100D5B879 /* StatisticsView.swift in Sources */,
 				5D2991CA29FAFF9B009F9A9D /* CoinModel.swift in Sources */,
 				5D4DBCE329FD133100627E9C /* PreviewProvider.swift in Sources */,
