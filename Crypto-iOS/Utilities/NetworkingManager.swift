@@ -30,7 +30,6 @@ class NetworkingManager {
         return URLSession.shared.dataTaskPublisher(for: url)
            // .subscribe(on: DispatchQueue.global(qos: .default)) -> data is downloaded on the bg thread by default
             .tryMap({ try handleURLResponse(output: $0) })
-            
             .eraseToAnyPublisher() // converts the big data type
     }
 
