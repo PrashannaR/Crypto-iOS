@@ -28,9 +28,9 @@ class NetworkingManager {
     
     static func download(url: URL) -> AnyPublisher<Data, any Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))
+           // .subscribe(on: DispatchQueue.global(qos: .default)) -> data is downloaded on the bg thread by default
             .tryMap({ try handleURLResponse(output: $0) })
-            .receive(on: DispatchQueue.main)
+            
             .eraseToAnyPublisher() // converts the big data type
     }
 
