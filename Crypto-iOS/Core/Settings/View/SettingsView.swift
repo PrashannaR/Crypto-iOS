@@ -12,11 +12,19 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                SwiftfulThinkingSection
-                CoinGeckoSection
-                DeveloperSection
-                ApplicationSection
+            ZStack {
+                Color.theme.background
+                    .ignoresSafeArea()
+                List {
+                    SwiftfulThinkingSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    CoinGeckoSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    DeveloperSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    ApplicationSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                }
             }
             .font(.headline)
             .accentColor(.blue)
@@ -55,7 +63,7 @@ extension SettingsView {
             Text("Swiftful Thinking").font(.caption)
         }
     }
-    
+
     private var CoinGeckoSection: some View {
         Section {
             VStack(alignment: .leading) {
@@ -69,23 +77,23 @@ extension SettingsView {
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.accent)
             }.padding(.vertical)
-            Link("Visit CoinGecko 🦎", destination: vm.coingeckoURL )
+            Link("Visit CoinGecko 🦎", destination: vm.coingeckoURL)
 
         } header: {
             Text("CoinGecko").font(.caption)
         }
     }
-    
+
     private var DeveloperSection: some View {
         Section {
             VStack(alignment: .leading) {
-                HStack{
+                HStack {
                     Image("devImage")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 100)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         Text("@PrashannaR")
                         Text("Native iOS and Android Developer @GDGVIT | Swift | SwiftUI | Kotlin | JetpackCompose")
                             .font(.caption)
@@ -97,33 +105,32 @@ extension SettingsView {
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.accent)
             }.padding(.vertical)
-            
-            HStack{
+
+            HStack {
                 Link(destination: vm.githubURL) {
                     Image("github")
                         .resizable()
                         .frame(width: 50, height: 50)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
-                
+
                 Link(destination: vm.linkedinURL) {
                     Image("linkedin")
                         .resizable()
                         .frame(width: 45, height: 45)
                 }
             }
-            
 
         } header: {
             Text("Developer").font(.caption)
         }
     }
-    
+
     private var ApplicationSection: some View {
         Section {
-            Link("Terms of Service", destination: vm.coingeckoTerms )
-            Link("Privacy Policy", destination: vm.coingeckoPrivacy )
-            Link("App Github Link", destination: vm.appGithubURL )
+            Link("Terms of Service", destination: vm.coingeckoTerms)
+            Link("Privacy Policy", destination: vm.coingeckoPrivacy)
+            Link("App Github Link", destination: vm.appGithubURL)
             Link("Course Playlist", destination: vm.playlistURL)
 
         } header: {

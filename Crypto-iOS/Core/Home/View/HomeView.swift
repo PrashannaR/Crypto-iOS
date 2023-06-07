@@ -108,6 +108,7 @@ extension HomeView {
                     .onTapGesture {
                         segue(coin: coin)
                     }
+                    .listRowBackground(Color.clear)
             }
         }
         .listStyle(.plain)
@@ -127,12 +128,13 @@ extension HomeView {
                     .onTapGesture {
                         segue(coin: coin)
                     }
+                    .listRowBackground(Color.clear )
             }
         }
         .listStyle(.plain)
     }
     private var emptyPortfolioView : some View{
-        Text("You haven't added any coins to your portfolio yet!\nPress + button to add a coin")
+        Text("You haven't added any coins to your portfolio yet !\nPress + button to add a coin")
             .font(.callout)
             .foregroundColor(Color.theme.accent)
             .fontWeight(.medium)
